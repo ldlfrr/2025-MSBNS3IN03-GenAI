@@ -103,6 +103,24 @@ Les sujets sont organises en categories thematiques. Chaque sujet inclut :
 | [H4](#h4---analyseur-de-tendances-difficulte-35) | Analyseur de Tendances | 3/5 |
 | [H5](#h5---extracteur-de-donnees-structurees-difficulte-25) | Extracteur de Donnees Structurees | 2/5 |
 
+### Categorie I : Agents Autonomes & Workflows
+| # | Sujet | Difficulte |
+|---|-------|------------|
+| [I1](#i1---agent-mcp-model-context-protocol-difficulte-35) | Agent MCP (Model Context Protocol) | 3/5 |
+| [I2](#i2---agent-multimodal-texte--images-difficulte-35) | Agent Multimodal (Texte + Images) | 3/5 |
+| [I3](#i3---data-analyst-agent-difficulte-25) | Data Analyst Agent | 2/5 |
+| [I4](#i4---generateur-de-notebooks-automatique-difficulte-35) | Generateur de Notebooks Automatique | 3/5 |
+| [I5](#i5---agent-de-recherche-multi-sources-difficulte-25) | Agent de Recherche Multi-Sources | 2/5 |
+| [I6](#i6---orchestrateur-de-workflows-ia-difficulte-35) | Orchestrateur de Workflows IA | 3/5 |
+| [I7](#i7---agent-de-code-interpreter-difficulte-25) | Agent de Code Interpreter | 2/5 |
+
+### Categorie J : IA Ethique & Responsable
+| # | Sujet | Difficulte |
+|---|-------|------------|
+| [J1](#j1---detecteur-de-biais-llm-difficulte-35) | Detecteur de Biais LLM | 3/5 |
+| [J2](#j2---evaluateur-de-toxicite-difficulte-25) | Evaluateur de Toxicite | 2/5 |
+| [J3](#j3---auditeur-de-decisions-ia-difficulte-35) | Auditeur de Decisions IA | 3/5 |
+
 ### Categorie X : IA Hybride & Projets Avances (Bonus)
 | # | Sujet | Difficulte |
 |---|-------|------------|
@@ -114,6 +132,7 @@ Les sujets sont organises en categories thematiques. Chaque sujet inclut :
 | [X6](#x6---diagnostic-medical-probabiliste-difficulte-45) | Diagnostic Medical Probabiliste | 4/5 |
 | [X7](#x7---agent-de-trading-algorithmique-difficulte-45) | Agent de Trading Algorithmique | 4/5 |
 | [X8](#x8---systeme-de-revision-de-croyances-difficulte-45) | Systeme de Revision de Croyances | 4/5 |
+| [X9](#x9---agent-de-jeu-information-imparfaite-difficulte-45) | Agent de Jeu (Information Imparfaite) | 4/5 |
 
 ---
 
@@ -998,6 +1017,233 @@ Projets d'analyse de donnees et d'extraction d'insights.
 
 ---
 
+## Categorie I : Agents Autonomes & Workflows
+
+Projets axes sur les agents IA autonomes, l'orchestration et les workflows intelligents - tendance majeure 2025-2026.
+
+### I1 - Agent MCP (Model Context Protocol) (Difficulte: 3/5)
+
+**Description :** Developper un agent utilisant le protocole MCP (Model Context Protocol) pour connecter un LLM a des outils et sources de donnees externes de maniere standardisee.
+
+**Objectifs :**
+- Implementer un serveur MCP exposant des ressources et outils
+- Creer un client MCP orchestre par un LLM
+- Gerer la decouverte dynamique de capacites
+- Construire un workflow multi-outils
+
+**Notebooks de reference :**
+| Notebook | Description |
+|----------|-------------|
+| [`GenAI/SemanticKernel/08-SemanticKernel-MCP.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/SemanticKernel/08-SemanticKernel-MCP.ipynb) | Integration MCP avec Semantic Kernel |
+| [`GenAI/Texte/4_Function_Calling.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/Texte/4_Function_Calling.ipynb) | Bases du tool calling |
+
+**References externes :**
+- [Model Context Protocol (Anthropic)](https://modelcontextprotocol.io/) - Specification officielle
+- [MCP Servers Registry](https://github.com/modelcontextprotocol/servers) - Serveurs disponibles
+
+---
+
+### I2 - Agent Multimodal (Texte + Images) (Difficulte: 3/5)
+
+**Description :** Creer un agent capable de traiter et generer du contenu multimodal (texte et images) de maniere coherente dans une meme conversation.
+
+**Objectifs :**
+- Analyser des images fournies par l'utilisateur
+- Generer des images contextuelles en reponse
+- Maintenir la coherence entre texte et visuel
+- Orchestrer plusieurs modeles specialises
+
+**Notebooks de reference :**
+| Notebook | Description |
+|----------|-------------|
+| [`GenAI/SemanticKernel/07-SemanticKernel-MultiModal.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/SemanticKernel/07-SemanticKernel-MultiModal.ipynb) | Multimodal avec SK |
+| [`GenAI/Images/03-1-Orchestration.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/Images/03-1-Orchestration.ipynb) | Orchestration multi-modeles images |
+| [`GenAI/Texte/8_Reasoning_Models.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/Texte/8_Reasoning_Models.ipynb) | Modeles de raisonnement avances |
+
+**References externes :**
+- [GPT-4 Vision](https://platform.openai.com/docs/guides/vision) - Analyse d'images
+- [Claude Vision](https://docs.anthropic.com/claude/docs/vision) - Multimodal Anthropic
+
+---
+
+### I3 - Data Analyst Agent (Difficulte: 2/5)
+
+**Description :** Developper un agent autonome capable d'analyser des datasets, generer des visualisations et produire des insights sans intervention humaine.
+
+**Objectifs :**
+- Ingerer et nettoyer des donnees automatiquement
+- Executer du code Python pour l'analyse (pandas, matplotlib)
+- Generer des rapports avec visualisations
+- Repondre aux questions en langage naturel sur les donnees
+
+**Notebooks de reference :**
+| Notebook | Description |
+|----------|-------------|
+| [`ML/DataScienceWithAgents/Day3/Labs/Lab7-Data-Analysis-Agent.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/ML/DataScienceWithAgents/PythonAgentsForDataScience/Day3/Labs/Lab7-Data-Analysis-Agent/Lab7-Data-Analysis-Agent.ipynb) | Agent d'analyse de donnees complet |
+| [`GenAI/Texte/7_Code_Interpreter.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/Texte/7_Code_Interpreter.ipynb) | Code Interpreter pour calculs |
+| [`ML/DataScienceWithAgents/Day2/Labs/Lab5-Viz-ML.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/ML/DataScienceWithAgents/PythonAgentsForDataScience/Day2/Labs/Lab5-Viz-ML/Lab5-Viz-ML.ipynb) | Visualisation et ML |
+
+**References externes :**
+- [PandasAI](https://github.com/Sinaptik-AI/pandas-ai) - Analyse de donnees conversationnelle
+- [LangChain Data Agent](https://python.langchain.com/docs/integrations/toolkits/pandas)
+
+---
+
+### I4 - Generateur de Notebooks Automatique (Difficulte: 3/5)
+
+**Description :** Systeme multi-agents qui genere automatiquement des notebooks Jupyter pedagogiques sur un sujet donne, avec code executable et explications.
+
+**Objectifs :**
+- Orchestrer plusieurs agents (Admin, Coder, Reviewer)
+- Generer du code Python/C# executable
+- Produire des explications pedagogiques
+- Valider automatiquement le notebook genere
+
+**Notebooks de reference :**
+| Notebook | Description |
+|----------|-------------|
+| [`GenAI/SemanticKernel/10-SemanticKernel-NotebookMaker.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/SemanticKernel/10-SemanticKernel-NotebookMaker.ipynb) | NotebookMaker 3 agents |
+| [`GenAI/SemanticKernel/03-SemanticKernel-Agents.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/SemanticKernel/03-SemanticKernel-Agents.ipynb) | Orchestration multi-agents |
+
+---
+
+### I5 - Agent de Recherche Multi-Sources (Difficulte: 2/5)
+
+**Description :** Agent combinant recherche web, lecture de PDF et interrogation de bases de donnees pour repondre a des questions complexes avec sources.
+
+**Objectifs :**
+- Integrer plusieurs sources de donnees (web, PDF, BDD)
+- Synthetiser les informations de sources multiples
+- Fournir des citations et references verifiables
+- Gerer les contradictions entre sources
+
+**Notebooks de reference :**
+| Notebook | Description |
+|----------|-------------|
+| [`GenAI/Texte/6_PDF_Web_Search.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/Texte/6_PDF_Web_Search.ipynb) | PDF et recherche web |
+| [`GenAI/Texte/5_RAG_Modern.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/Texte/5_RAG_Modern.ipynb) | RAG moderne |
+| [`GenAI/Texte/4_Function_Calling.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/Texte/4_Function_Calling.ipynb) | Integration d'outils |
+
+**References externes :**
+- [Tavily AI](https://tavily.com/) - Recherche web optimisee IA
+- [Perplexity](https://www.perplexity.ai/) - Exemple de recherche multi-sources
+
+---
+
+### I6 - Orchestrateur de Workflows IA (Difficulte: 3/5)
+
+**Description :** Plateforme permettant de definir et executer des workflows complexes combinant plusieurs etapes IA (texte, image, audio, code).
+
+**Objectifs :**
+- Definir des workflows visuellement ou via DSL
+- Orchestrer l'execution sequentielle/parallele
+- Gerer les erreurs et retries
+- Monitorer l'execution en temps reel
+
+**Notebooks de reference :**
+| Notebook | Description |
+|----------|-------------|
+| [`GenAI/SemanticKernel/06-SemanticKernel-ProcessFramework.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/SemanticKernel/06-SemanticKernel-ProcessFramework.ipynb) | Process Framework SK |
+| [`GenAI/SemanticKernel/04-SemanticKernel-Filters-Observability.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/SemanticKernel/04-SemanticKernel-Filters-Observability.ipynb) | Filtres et observabilite |
+| [`GenAI/Texte/9_Production_Patterns.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/Texte/9_Production_Patterns.ipynb) | Patterns de production |
+
+**References externes :**
+- [LangGraph](https://langchain-ai.github.io/langgraph/) - Workflows cycliques
+- [Prefect](https://www.prefect.io/) - Orchestration de workflows
+
+---
+
+### I7 - Agent de Code Interpreter (Difficulte: 2/5)
+
+**Description :** Agent capable d'ecrire et executer du code Python pour resoudre des problemes mathematiques, analyser des donnees ou creer des visualisations.
+
+**Objectifs :**
+- Generer du code Python a partir de requetes en langage naturel
+- Executer le code dans un environnement sandboxe
+- Afficher les resultats (texte, graphiques, tableaux)
+- Iterer pour corriger les erreurs
+
+**Notebooks de reference :**
+| Notebook | Description |
+|----------|-------------|
+| [`GenAI/Texte/7_Code_Interpreter.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/Texte/7_Code_Interpreter.ipynb) | Code Interpreter complet |
+| [`GenAI/Vibe-Coding/Claude-Code-101.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/Vibe-Coding/Claude-Code-101.ipynb) | Vibe coding avec Claude |
+
+**References externes :**
+- [OpenAI Code Interpreter](https://platform.openai.com/docs/assistants/tools/code-interpreter) - Documentation officielle
+- [E2B](https://e2b.dev/) - Sandbox d'execution de code
+
+---
+
+## Categorie J : IA Ethique & Responsable
+
+Projets axes sur l'evaluation et l'amelioration de la responsabilite des systemes IA.
+
+### J1 - Detecteur de Biais LLM (Difficulte: 3/5)
+
+**Description :** Developper un outil qui detecte et mesure les biais (genre, origine, age, etc.) dans les reponses d'un LLM.
+
+**Objectifs :**
+- Creer des batteries de tests pour differents types de biais
+- Mesurer quantitativement les biais detectes
+- Comparer plusieurs modeles
+- Suggerer des strategies d'attenuation
+
+**Notebooks de reference :**
+| Notebook | Description |
+|----------|-------------|
+| [`GenAI/Texte/2_PromptEngineering.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/Texte/2_PromptEngineering.ipynb) | Techniques de prompting |
+| [`GenAI/Texte/3_Structured_Outputs.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/Texte/3_Structured_Outputs.ipynb) | Mesures structurees |
+
+**References externes :**
+- [HELM Benchmark](https://crfm.stanford.edu/helm/) - Evaluation holistique des LLMs
+- [DecodingTrust](https://decodingtrust.github.io/) - Benchmark de confiance
+
+---
+
+### J2 - Evaluateur de Toxicite (Difficulte: 2/5)
+
+**Description :** Systeme detectant et classifiant les contenus toxiques, offensants ou inappropries generes par des LLMs.
+
+**Objectifs :**
+- Classifier les types de toxicite (insultes, haine, violence, etc.)
+- Evaluer la severite sur une echelle graduee
+- Tester la robustesse face aux jailbreaks
+- Generer des rapports d'evaluation
+
+**Notebooks de reference :**
+| Notebook | Description |
+|----------|-------------|
+| [`GenAI/Texte/3_Structured_Outputs.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/Texte/3_Structured_Outputs.ipynb) | Classification structuree |
+
+**References externes :**
+- [Perspective API](https://perspectiveapi.com/) - Detection de toxicite Google
+- [OpenAI Moderation](https://platform.openai.com/docs/guides/moderation) - API de moderation
+
+---
+
+### J3 - Auditeur de Decisions IA (Difficulte: 3/5)
+
+**Description :** Outil expliquant les decisions d'un systeme IA et verifiant leur conformite a des principes ethiques definis.
+
+**Objectifs :**
+- Extraire les raisons derriere une decision IA
+- Verifier la conformite a une charte ethique
+- Detecter les cas limites problematiques
+- Generer des rapports d'audit
+
+**Notebooks de reference :**
+| Notebook | Description |
+|----------|-------------|
+| [`SymbolicAI/Tweety/Tweety-5-Abstract-Argumentation.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/SymbolicAI/Tweety/Tweety-5-Abstract-Argumentation.ipynb) | Analyse d'arguments |
+| [`GenAI/Texte/8_Reasoning_Models.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GenAI/Texte/8_Reasoning_Models.ipynb) | Modeles de raisonnement |
+
+**References externes :**
+- [AI Fairness 360 (IBM)](https://aif360.mybluemix.net/) - Toolkit d'equite
+- [Anthropic Constitutional AI](https://www.anthropic.com/constitutional-ai) - IA constitutionnelle
+
+---
+
 ## Categorie X : IA Hybride & Projets Avances (Bonus)
 
 Ces projets ambitieux combinent plusieurs paradigmes d'IA (symbolique, probabiliste, neuronale). Ils peuvent donner lieu a des **bonus de notation**.
@@ -1216,6 +1462,30 @@ Donnees utilisateur -> Modele bayesien (Infer.NET) -> Distributions -> LLM (expl
 
 ---
 
+### X9 - Agent de Jeu (Information Imparfaite) (Difficulte: 4/5)
+
+**Description :** Developper un agent capable de jouer a des jeux a information imparfaite (poker, bataille navale) en utilisant des techniques de theorie des jeux (CFR, regret matching).
+
+**Objectifs :**
+- Modeliser le jeu avec les regles et etats caches
+- Implementer CFR (Counterfactual Regret Minimization)
+- Gerer l'incertitude sur les etats adverses
+- Evaluer les performances contre des strategies de base
+
+**Notebooks de reference :**
+| Notebook | Description |
+|----------|-------------|
+| [`GameTheory/GameTheory-13-ImperfectInfo-CFR.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GameTheory/GameTheory-13-ImperfectInfo-CFR.ipynb) | CFR et information imparfaite |
+| [`GameTheory/GameTheory-11-BayesianGames.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GameTheory/GameTheory-11-BayesianGames.ipynb) | Jeux bayesiens |
+| [`GameTheory/GameTheory-17-MultiAgent-RL.ipynb`](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/GameTheory/GameTheory-17-MultiAgent-RL.ipynb) | RL multi-agents |
+
+**References externes :**
+- [Libratus (CMU)](https://www.cs.cmu.edu/~noamb/papers/17-IJCAI-Libratus.pdf) - IA de poker SOTA
+- [OpenSpiel](https://github.com/google-deepmind/open_spiel) - Framework de jeux
+- [CFR Tutorial](https://www.ma.imperial.ac.uk/~dturaev/neller-lanctot.pdf) - Introduction au CFR
+
+---
+
 ## Ressources du Cours
 
 ### Depot de Cours Principal
@@ -1228,16 +1498,18 @@ Structure locale : `D:\dev\CoursIA\MyIA.AI.Notebooks`
 
 | Categorie | Nombre | Sujets couverts |
 |-----------|--------|-----------------|
-| **GenAI** | ~30 | LLMs, RAG, Function Calling, Semantic Kernel, Images |
-| **SymbolicAI** | ~47 | Tweety, Lean 4, Z3, Planification, Argumentation |
-| **GameTheory** | ~26 | Nash, jeux extensifs, CFR, jeux cooperatifs, MARL |
-| **Probas** | ~22 | Infer.NET, reseaux bayesiens, recommandation |
-| **RL** | 3 | Stable Baselines 3, PPO, HER |
-| **Sudoku** | 11 | Backtracking, genetiques, Z3, OR-Tools |
-| **Search** | 5 | CSPs, algorithmes genetiques, A* |
-| **ML** | 14 | ML.NET, classification, AutoML |
-| **QuantConnect** | 27 | Trading algorithmique, ML/DL/RL finance |
-| **Total** | **~207** | - |
+| **GenAI/Texte** | ~10 | LLMs, RAG, Function Calling, Code Interpreter, Reasoning |
+| **GenAI/SemanticKernel** | ~12 | Agents, Orchestration, MCP, Multimodal, NotebookMaker |
+| **GenAI/Images** | ~16 | DALL-E 3, Stable Diffusion, FLUX, Orchestration |
+| **SymbolicAI** | ~23 | Tweety, Lean 4, Z3, Planification, Argumentation |
+| **GameTheory** | ~17 | Nash, CFR, jeux bayesiens, cooperatifs, MARL |
+| **Probas** | ~21 | Infer.NET, reseaux bayesiens, recommandation, decisions |
+| **RL** | 3 | Stable Baselines 3, DQN, Experience Replay |
+| **Sudoku** | 10 | Backtracking, genetiques, Z3, OR-Tools, Dancing Links |
+| **Search** | 4 | CSPs, algorithmes genetiques |
+| **ML** | ~16 | ML.NET, Data Science with Agents, AutoML |
+| **QuantConnect** | 27 | Trading algorithmique, ML/DL/RL finance, LLM signals |
+| **Total** | **~213** | - |
 
 ---
 
@@ -1258,51 +1530,11 @@ Le projet est evalue selon un systeme d'**evaluation collegiale** combinant :
 | **Theorique** | 25% | Comprehension des concepts IA sous-jacents, justification des choix algorithmiques, maitrise du sujet |
 | **Organisation/Gestion de projet** | 25% | Repartition du travail, respect des delais, documentation, commits reguliers, collaboration effective |
 
-### Algorithme de Notation (GradeBookApp)
+### Algorithme de Notation
 
-Le systeme utilise un algorithme de notation en **5 etapes** :
+La note finale combine evaluations pairs (50%) et professeur (50%), puis un redressement statistique est applique vers une **moyenne cible de 14.0/20** avec **ecart-type 2.0**. Un ajustement selon la taille du groupe est egalement applique (+3 pour solo, +1 pour binome, -1 pour 4 pers., -2 pour 5+).
 
-#### 1. Collecte des Evaluations
-- Formulaire Google Forms pour soumettre les notes et commentaires
-- Chaque evaluateur note : Presentation, Technique, Theorique, Organisation
-
-#### 2. Filtrage et Validation
-5 regles de filtrage sont appliquees :
-1. **Scores invalides** : Rejet des notes hors limites (etudiants max 19.999, prof max 20, min 1)
-2. **Timestamps incoherents** : Rejet si ecart > 5h entre soumissions
-3. **Evaluateurs non inscrits** : Seuls les etudiants du cours peuvent evaluer
-4. **Auto-evaluation** : Impossible de noter son propre groupe
-5. **Doublons** : Une seule evaluation par evaluateur et par projet
-
-#### 3. Calcul de la Note Brute
-```
-Note_brute = (Moyenne_etudiants + Moyenne_prof x Poids_prof) / (1 + Poids_prof)
-```
-Avec `Poids_prof = 1.0` (equivalent 50%/50%)
-
-#### 4. Redressement Statistique (Z-score)
-```
-Note_ajustee = ((Note_brute - Moyenne_classe) / Ecart_type_classe) x Ecart_type_cible + Moyenne_cible
-```
-Parametres cibles :
-- **Moyenne cible** : 14.0/20
-- **Ecart-type cible** : 2.0
-
-#### 5. Ajustement selon la Taille du Groupe
-| Taille | Ajustement |
-|--------|------------|
-| 1 personne | +3.0 |
-| 2 personnes | +1.0 |
-| 3 personnes | 0.0 |
-| 4 personnes | -1.0 |
-| 5+ personnes | -2.0 |
-
-### Feedbacks
-Chaque groupe recoit :
-- Sa note finale ajustee
-- Les commentaires positifs des evaluateurs
-- Les axes d'amelioration suggeres
-- Les recommandations generales
+> Details techniques : voir [GradeBookApp](https://github.com/jsboige/CoursIA/tree/main/GradeBookApp)
 
 ---
 
