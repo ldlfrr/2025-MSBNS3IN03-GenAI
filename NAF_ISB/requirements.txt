@@ -1,0 +1,8 @@
+pdfplumber
+pydantic
+python-dotenv
+typer
+rich
+pytest
+openai
+
