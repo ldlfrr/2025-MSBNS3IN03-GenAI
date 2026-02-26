@@ -1,12 +1,14 @@
 """Générateur de quiz utilisant les LLM."""
 
 import json
+import random
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 from datetime import datetime
 
 from ..config import settings
 from ..llm.client import LLMClient
+from ..rag.extractor import RAGExtractor, chunk_text
 
 
 class QuizGenerator:
@@ -61,6 +63,7 @@ class QuizGenerator:
         self.model = model or settings.openai_model
         self.api_key = api_key or settings.openai_api_key
         self.client = LLMClient(api_key=self.api_key, model=self.model)
+        self.rag_extractor = RAGExtractor(model=self.model, api_key=self.api_key)
 
     def generate_quiz_from_text(
         self,
@@ -138,7 +141,146 @@ class QuizGenerator:
             content = section.get("content", "")
             full_content += f"## {title}\n\n{content}\n\n"
 
-        return self.generate_quiz_from_text(full_content, **kwargs)
+        # Utiliser RAG pour extraire les concepts clés
+        concepts = self.rag_extractor.extract_key_concepts(full_content, num_concepts=8)
+        
+        return self._generate_quiz_with_rag(full_content, concepts, **kwargs)
+
+    def _generate_quiz_with_rag(
+        self,
+        full_content: str,
+        concepts: List[Dict[str, Any]] = None,
+        num_questions: int = None,
+        num_options: int = 4,
+        difficulty: int = None,
+        question_types: List[str] = None,
+        **kwargs
+    ) -> Dict[str, Any]:
+        """
+        Generates a quiz using RAG concept extraction.
+
+        Args:
+            full_content: Full content to analyze
+            concepts: Extracted key concepts
+            num_questions: Number of questions
+            num_options: Number of MCQ options
+            difficulty: Target difficulty
+            question_types: Question types
+
+        Returns:
+            Dictionary containing generated quiz
+        """
+        num_questions = num_questions or settings.min_questions
+        difficulty = difficulty or settings.default_difficulty
+        question_types = question_types or ["qcm", "ouvert"]
+        concepts = concepts or []
+
+        # Build enriched prompt with concepts
+        concepts_text = "\n".join([f"- {c.get('name', '')}: {c.get('definition', '')}" for c in concepts[:5]])
+
+        prompt = f"""Vous êtes un expert pédagogique spécialisé dans la création de quiz.
+
+Basé sur le contenu suivant et les concepts clés, générez un quiz avec {num_questions} questions.
+
+## Concepts clés à couvrir:
+{concepts_text}
+
+## Règles strictes:
+1. Générez exactement {num_questions} questions
+2. Pour QCM: {num_options} options avec 1 réponse correcte
+3. Difficulté cible: {difficulty}/5
+4. Incluez explications détaillées pour chaque réponse
+
+## Format JSON obligatoire:
+{{
+    "title": "Quiz",
+    "description": "Description",
+    "questions": [
+        {{
+            "id": 1,
+            "type": "qcm",
+            "difficulty": 3,
+            "question": "Question?",
+            "options": ["A", "B", "C", "D"],
+            "correct_answer": "Réponse",
+            "explanation": "Explication"
+        }}
+    ]
+}}
+
+## Contenu:
+{full_content[:8000]}
+"""
+
+        response = self.client.generate(
+            prompt=prompt,
+            temperature=0.5,
+            max_tokens=4000,
+            response_format={"type": "json_object"}
+        )
+
+        try:
+            quiz = json.loads(response)
+        except json.JSONDecodeError:
+            quiz = self._generate_fallback_quiz(full_content, num_questions)
+
+        # Calibrate difficulties
+        self._calibrate_quiz_difficulties(quiz)
+
+        # Add metadata
+        quiz["metadata"] = {
+            "generated_at": datetime.now().isoformat(),
+            "model": self.model,
+            "num_questions": len(quiz.get("questions", [])),
+            "difficulty": difficulty,
+            "with_explanations": settings.include_explanations
+        }
+
+        return quiz
+
+    def _calibrate_quiz_difficulties(self, quiz: Dict[str, Any]) -> None:
+        """
+        Calibrates the difficulty levels of questions based on simple heuristics.
+        Since DifficultyCalibrator is not available, we use a simplified approach.
+
+        Args:
+            quiz: Quiz to calibrate (modified in place)
+        """
+        for question in quiz.get("questions", []):
+            # Use difficulty from LLM or default to 3
+            if "difficulty" not in question or question["difficulty"] is None:
+                question["difficulty"] = 3  # Default difficulty
+
+    def _generate_fallback_quiz(self, text: str, num_questions: int) -> Dict[str, Any]:
+        """
+        Generates a basic quiz in case of error.
+
+        Args:
+            text: Source text
+            num_questions: Number of questions
+
+        Returns:
+            Basic quiz with correct structure
+        """
+        questions = []
+        words = text.split()
+
+        for i in range(min(num_questions, 5)):
+            questions.append({
+                "id": i + 1,
+                "type": "qcm" if i % 2 == 0 else "ouvert",
+                "difficulty": (i % 5) + 1,
+                "question": f"Question {i + 1}: " + " ".join(words[i*10:(i+1)*10])[:80] + "?",
+                "options": ["Option A", "Option B", "Option C", "Option D"] if i % 2 == 0 else [],
+                "correct_answer": "Réponse",
+                "explanation": "Explication non disponible"
+            })
+
+        return {
+            "title": "Quiz",
+            "description": "Quiz généré par défaut",
+            "questions": questions
+        }
 
     def export_quiz(
         self,

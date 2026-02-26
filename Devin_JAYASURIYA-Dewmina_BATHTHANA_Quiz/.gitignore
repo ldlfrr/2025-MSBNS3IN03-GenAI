@@ -34,10 +34,10 @@ ENV/
 # Fichiers de sortie
 output/
 *.json
-*.md
-*.csv
-*.txt
-*.pdf
+# *.md
+# *.csv
+# *.txt
+# *.pdf
 
 # Fichiers IDE
 .idea/
