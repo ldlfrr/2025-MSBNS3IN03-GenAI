@@ -2,9 +2,10 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for, f
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+import json
 
 from src.git_parser import get_pr_diff
-from src.ai_reviewer import review_code, chat_with_ia  
+from src.ai_reviewer import review_code, chat_with_ia 
 
 app = Flask(__name__)
 
@@ -27,7 +28,10 @@ class Review(db.Model):
     repo_name = db.Column(db.String(100), nullable=False)
     pr_number = db.Column(db.Integer, nullable=False)
     ai_result = db.Column(db.Text, nullable=False)
-    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    chat_history = db.Column(db.Text, default='[]') 
+    
+    date_created = db.Column(db.DateTime, default=datetime.now)
     user_id = db.Column(db.ForeignKey('user.id'), nullable=False)
 
 with app.app_context():
@@ -118,7 +122,8 @@ def analyze_pr():
         return jsonify({
             "status": "success", 
             "result": review_result,
-            "diff": diff_text  
+            "diff": diff_text,
+            "review_id": new_review.id,  
         })
         
     except Exception as e:
@@ -134,9 +139,18 @@ def chat_api():
     
     data = request.json
     messages = data.get('messages', [])
+    review_id = data.get('review_id')
     
     try:
         reply = chat_with_ia(messages)
+        
+        if review_id:
+            review = Review.query.get(review_id)
+            if review and review.user_id == session['user_id']:
+                messages_to_save = messages + [{"role": "assistant", "content": reply}]
+                review.chat_history = json.dumps(messages_to_save)
+                db.session.commit()
+        
         return jsonify({"status": "success", "reply": reply})
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 400

@@ -1,3 +1,12 @@
+# Fichiers sensibles (ne jamais commit)
 .env
+.env.local
+.env.*.local
+
+# Environnement virtuel
 .venv/
-__pycache__/   
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
